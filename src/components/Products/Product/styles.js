@@ -16,4 +16,7 @@ export default makeStyles(() => ({
     display: "flex",
     justifyContent: "space-between",
   },
+  link: {
+    color: "#363434",
+  },
 }));
