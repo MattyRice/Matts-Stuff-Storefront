@@ -1,4 +1,0 @@
-[build]
-command = "npm run build"
-base = "Matts-Stuff-Storefront/"
-publish = "Matts-Stuff-Storefront/build"
