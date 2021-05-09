@@ -8,10 +8,12 @@ import {
   CircularProgress,
   Divider,
   Button,
+  CssBaseline,
 } from "@material-ui/core";
 import useStyles from "./styles";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
+import { Link, useHistory } from "react-router-dom";
 
 import { commerce } from "../../../lib/commerce";
 
@@ -21,7 +23,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
+  const [isFinished, setIsFinished] = useState(false);
   const classes = useStyles();
+  const history = useHistory();
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -35,26 +39,67 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
           });
 
           setCheckoutToken(token);
-        } catch (error) {}
+        } catch (error) {
+          if (activeStep !== steps.length) history.push("/");
+        }
       };
 
       generateToken();
     }
   }, [cart]);
 
-  const next = (data) => {
+  const test = (data) => {
     setShippingData(data);
 
     nextStep();
   };
 
-  const Confirmation = () => <div>Confirmation</div>;
+  const timeout = () => {
+    setTimeout(() => {
+      setIsFinished(true);
+    }, 3000);
+  };
+
+  const Confirmation = () =>
+    order.customer ? (
+      <>
+        <div>
+          <Typography variant="h5">
+            Thank you for your purchase, {order.customer.firstname}{" "}
+            {order.customer.lastname}!
+          </Typography>
+          <Divider className={classes.divider} />
+          <Typography variant="subtitle2">
+            Order ref: {order.customer_reference}
+          </Typography>
+        </div>
+        <br />
+        <Button component={Link} variant="outlined" type="button" to="/">
+          Back to home
+        </Button>
+      </>
+    ) : isFinished ? (
+      <>
+        <div>
+          <Typography variant="h5">Thank you for your purchase!</Typography>
+          <Divider className={classes.divider} />
+        </div>
+        <br />
+        <Button component={Link} variant="outlined" type="button" to="/">
+          Back to home
+        </Button>
+      </>
+    ) : (
+      <div className={classes.spinner}>
+        <CircularProgress />
+      </div>
+    );
 
   const Form = () =>
     activeStep === 0 ? (
       <AddressForm
         checkoutToken={checkoutToken}
-        next={next}
+        test={test}
         setShippingData={setShippingData}
         nextStep={nextStep}
       />
@@ -65,13 +110,15 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         nextStep={nextStep}
         backStep={backStep}
         onCaptureCheckout={onCaptureCheckout}
+        timeout={timeout}
       />
     );
 
   return (
     <>
+      <CssBaseline />
       <div className={classes.toolbar}>
-        <main classname={classes.layout}>
+        <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography variant="h4" align="center">
               Checkout
