@@ -20,7 +20,7 @@ const Product = ({ product, onAddToCart }) => {
     <CardActionArea>
       <Card className={classes.root}>
         <Link
-          to={"product-view/${product.id}"}
+          to={`product-view/${product.id}`}
           className={classes.link}
           style={{ textDecoration: "none" }}
         >
