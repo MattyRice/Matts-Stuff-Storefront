@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Products, Navbar, Cart, Checkout } from "./components";
+import { Products, Navbar, Cart, Checkout, ProductView } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { commerce } from "./lib/commerce";
 
@@ -96,6 +96,9 @@ const App = () => {
               onCaptureCheckout={handleCaptureCheckout}
               error={errorMessage}
             />
+          </Route>
+          <Route exact path="/product-view/:id">
+            <ProductView AddToCart={handleAddToCart} />
           </Route>
         </Switch>
       </div>

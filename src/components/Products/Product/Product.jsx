@@ -11,6 +11,8 @@ import {
 import { Add, AddShoppingCartRounded } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
+import ProductView from "../ProductView/ProductView";
+
 import useStyles from "./styles";
 
 const Product = ({ product, onAddToCart }) => {
@@ -45,6 +47,7 @@ const Product = ({ product, onAddToCart }) => {
             />
           </CardContent>
         </Link>
+
         <CardActions disableSpacing className={classes.cardActions}>
           <IconButton aria-label="Add to Cart" onClick={onAddToCart}>
             <AddShoppingCartRounded />
