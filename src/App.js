@@ -98,7 +98,7 @@ const App = () => {
             />
           </Route>
           <Route exact path="/product-view/:id">
-            <ProductView AddToCart={handleAddToCart} />
+            <ProductView AddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
         </Switch>
       </div>

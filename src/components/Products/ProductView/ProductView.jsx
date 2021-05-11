@@ -1,7 +1,7 @@
 // TODO: Create product view with
-// - add to cart button
+// * add to cart button
 // - product image carousel
-// - increment or decerement
+// * increment or decerement
 
 import React, { useState, useEffect } from "react";
 import {
@@ -12,6 +12,7 @@ import {
   CardMedia,
   Tabs,
   Tab,
+  Box,
 } from "@material-ui/core";
 import useStyles from "./styles";
 
@@ -23,6 +24,7 @@ const ProductView = ({ AddToCart }) => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [value, setValue] = useState(0);
+  const [productPictures, setProductPictures] = useState("");
 
   const fetchProduct = async (id) => {
     const response = await commerce.products.retrieve(id);
@@ -65,7 +67,8 @@ const ProductView = ({ AddToCart }) => {
       <Container className={classes.productView}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            <CardMedia image={product.src} />
+            {/* <Box className={classes.media} image={product.src}/> */}
+            <img src={product.src} alt="product" className={classes.media} />
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="h4" gutterBottom style={{ fontWeight: "700" }}>
