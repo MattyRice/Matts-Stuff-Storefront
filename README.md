@@ -4,7 +4,34 @@ My storefront for my clothes.
 
 ## Built with...
 
-React.js
-Commerce.js
-Material UI
-Stripe
+- React.JS
+- Commerce.JS
+- Material UI
+- Stripe
+
+## TODO
+- Complete Navbar
+  -  Category routing
+    -  Tops:
+      -  Shirts
+      -  Sweaters
+      -  Longsleeve
+    -  Bottoms:
+      -  Jeans
+      -  Lounge
+      -  Shorts
+      -  Dress
+    -  Shoes:
+      -  Sneakers
+      -  Boots
+      -  Sandals
+    -  Accessories
+  -  Responsiveness
+  -  Search
+-  Product Pages
+  -   Breadcrumb
+- Landing Page
+  - Headline/Hero Image
+  - About ?
+- Categories Page
+  - Filters
