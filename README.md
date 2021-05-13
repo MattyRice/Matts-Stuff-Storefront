@@ -41,3 +41,6 @@ My storefront for my clothes.
     - Saved Payment Method
 - Databases
     -  Accounts and Payment Data
+-  CMS
+  - Edit/Add/Remove Products
+  - Edit website components ?  
