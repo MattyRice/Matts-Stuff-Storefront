@@ -35,3 +35,9 @@ My storefront for my clothes.
   - About ?
 - Categories Page
   - Filters
+- Accounts
+    -  Email and Social
+    - Order History
+    - Saved Payment Method
+- Databases
+    -  Accounts and Payment Data
