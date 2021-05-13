@@ -10,37 +10,38 @@ My storefront for my clothes.
 - Stripe
 
 ## TODO
-- Complete Navbar
-  -  Category routing
-    -  Tops:
-      -  Shirts
-      -  Sweaters
-      -  Longsleeve
-    -  Bottoms:
-      -  Jeans
-      -  Lounge
-      -  Shorts
-      -  Dress
-    -  Shoes:
-      -  Sneakers
-      -  Boots
-      -  Sandals
-    -  Accessories
-  -  Responsiveness
-  -  Search
--  Product Pages
-  -   Breadcrumb
-- Landing Page
-  - Headline/Hero Image
-  - About ?
-- Categories Page
-  - Filters
-- Accounts
-    -  Email and Social
-    - Order History
-    - Saved Payment Method
-- Databases
-    -  Accounts and Payment Data
--  CMS
-  - Edit/Add/Remove Products
-  - Edit website components ?  
+- [ ] Complete Navbar
+  - [ ] Category routing
+    -  [ ] Tops:
+      - [ ]  Shirts
+      - [ ]  Sweaters
+      - [ ] Longsleeve
+    - [ ] Bottoms:
+      - [ ] Jeans
+      - [ ] Lounge
+      - [ ] Shorts
+      - [ ] Dress
+    - [ ] Shoes:
+      - [ ] Sneakers
+      - [ ] Boots
+      - [ ] Sandals
+    - [ ] Accessories
+  - [ ] Responsiveness
+  - [ ] Search
+- [ ] Product Pages
+  - [ ] Breadcrumb
+- [ ] Landing Page
+  - [ ] Headline/Hero Image
+  - [ ] About ?
+- [ ] Categories Page
+  - [ ] Filters
+- [ ] Accounts
+    - [ ] Email and Social
+    - [ ] Order History
+    - [ ] Saved Payment Method
+- [ ] Databases
+    - [ ] Accounts and Payment Data
+- [ ] CMS
+  - [ ] Edit/Add/Remove Products
+  - [ ] Edit website components ?  
+
