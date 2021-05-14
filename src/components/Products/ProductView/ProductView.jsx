@@ -27,7 +27,6 @@ const ProductView = ({ AddToCart }) => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [value, setValue] = useState(0);
-  const [productPictures, setProductPictures] = useState(0);
 
   const fetchProduct = async (id) => {
     const response = await commerce.products.retrieve(id);
@@ -46,7 +45,7 @@ const ProductView = ({ AddToCart }) => {
       price: price.formatted_with_symbol,
     });
 
-    console.log(response);
+    // console.log(response);
   };
 
   useEffect(() => {
@@ -86,9 +85,10 @@ const ProductView = ({ AddToCart }) => {
               {/* Result ===> cannot map undefined  */}
               {/* Notes: There is something wrong with the props passing through to the Carousel Pictures function */}
 
-              {product.assets.map((item, index) => {
-                return <CarouselPictures item={item} key={index} />;
-              })}
+              {product.assets &&
+                product.assets.map((item, index) => {
+                  return <CarouselPictures item={item} key={index} />;
+                })}
             </Carousel>
             {/* <img src={product.media} alt="product" className={classes.media} /> */}
           </Grid>
