@@ -1,6 +1,6 @@
 // TODO: Create product view with
-// * add to cart button
 // - product image carousel
+// * add to cart button
 // * increment or decerement
 
 import React, { useState, useEffect } from "react";
@@ -14,7 +14,10 @@ import {
   Tab,
   Box,
 } from "@material-ui/core";
+import Carousel from "react-material-ui-carousel";
 import useStyles from "./styles";
+
+import CarouselPictures from "../../CarouselPictures/CarouselPictures";
 
 import { commerce } from "../../../lib/commerce";
 
@@ -24,11 +27,12 @@ const ProductView = ({ AddToCart }) => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [value, setValue] = useState(0);
-  const [productPictures, setProductPictures] = useState("");
+  const [productPictures, setProductPictures] = useState(0);
 
   const fetchProduct = async (id) => {
     const response = await commerce.products.retrieve(id);
-    const { name, price, quantity, description, media, categories } = response;
+    const { name, price, quantity, description, assets, categories, media } =
+      response;
     setProduct({
       id,
       name,
@@ -36,7 +40,9 @@ const ProductView = ({ AddToCart }) => {
       quantity,
       description,
       category: categories.name,
-      src: media.source,
+      // src: assets.map((x) => x.url),
+      assets,
+      media: media.source,
       price: price.formatted_with_symbol,
     });
 
@@ -61,14 +67,30 @@ const ProductView = ({ AddToCart }) => {
     setValue(newValue);
   };
 
+  console.log(product.assets);
+
+  // let props = {};
+  // props.assets
+  //   ? props.assets.map((url) => console.log(url))
+  //   : console.log("Ok");
+
   return (
     <>
       <div className={classes.toolbar} />
       <Container className={classes.productView}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            {/* <Box className={classes.media} image={product.src}/> */}
-            <img src={product.src} alt="product" className={classes.media} />
+            <Carousel autoPlay={false}>
+              {/* FIXME:  */}
+              {/* Expected ===> Display images from assets array of objects and display it in a carousel */}
+              {/* Result ===> cannot map undefined  */}
+              {/* Notes: There is something wrong with the props passing through to the Carousel Pictures function */}
+
+              {product.assets.map((item, index) => {
+                return <CarouselPictures item={item} key={index} />;
+              })}
+            </Carousel>
+            {/* <img src={product.media} alt="product" className={classes.media} /> */}
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="h4" gutterBottom style={{ fontWeight: "700" }}>
@@ -89,6 +111,7 @@ const ProductView = ({ AddToCart }) => {
               indicatorColor="primary"
               textColor="primary"
               onChange={handleChange}
+              variant="fullWidth"
               aria-label="product descritpion"
             >
               <Tab label="Size and Fit" />
@@ -96,11 +119,13 @@ const ProductView = ({ AddToCart }) => {
               <Tab label="Details and Material" />
             </Tabs>
             <TabPanel value={value} index={0}>
-              <Typography
-                variant="body1"
-                dangerouslySetInnerHTML={{ __html: product.description }}
-                color="textPrimary"
-              />
+              <div className={classes.tabpanel}>
+                <Typography
+                  variant="body1"
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                  color="textPrimary"
+                />
+              </div>
             </TabPanel>
             <Grid item xs={12} md={12}>
               <div className={classes.buttons}>

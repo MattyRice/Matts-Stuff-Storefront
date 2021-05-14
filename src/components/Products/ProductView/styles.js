@@ -6,12 +6,18 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   card: {
-    height: "100%",
+    height: "20%%",
     width: "100%",
   },
   media: {
     width: "100%",
     // height: "100%",
+  },
+  tabpanel: {
+    backgroundColor: "#eeeeee",
+    borderRadius: "0 0 1rem 1rem",
+    padding: "2px 5px 2px 20px",
+    marginTop: 0,
   },
   buttons: {
     display: "flex",
