@@ -80,11 +80,6 @@ const ProductView = ({ AddToCart }) => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
             <Carousel autoPlay={false}>
-              {/* FIXME:  */}
-              {/* Expected ===> Display images from assets array of objects and display it in a carousel */}
-              {/* Result ===> cannot map undefined  */}
-              {/* Notes: There is something wrong with the props passing through to the Carousel Pictures function */}
-
               {product.assets &&
                 product.assets.map((item, index) => {
                   return <CarouselPictures item={item} key={index} />;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, CardMedia, Card } from "@material-ui/core";
+// import { Paper, CardMedia, Card } from "@material-ui/core";
 import useStyles from "./styles";
 
 function CarouselPictures(props) {
