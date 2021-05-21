@@ -31,7 +31,7 @@ My storefront for my clothes.
 - [ ] Product Pages
   - [ ] Breadcrumb
 - [ ] Landing Page
-  - [ ] Headline/Hero Image
+  - [x] Headline/Hero Image
   - [ ] About ?
 - [ ] Categories Page
   - [ ] Filters
