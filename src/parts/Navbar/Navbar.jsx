@@ -24,15 +24,14 @@ const Navbar = ({ totalItems }) => {
     <>
       <AppBar position="fixed" className={classes.AppBar} color="inherit">
         <Toolbar>
-          <Typography component={Link} to="/">
+          <Link to="/">
             <img
               src={logo}
               alt="MattsStuff.js"
               height="25px"
               className={classes.image}
             />
-            Matt's Stuff
-          </Typography>
+          </Link>
           <div className={classes.grow} />
           {location.pathname != "/cart" && (
             <div className={classes.button}>

@@ -1,29 +1,25 @@
 import React from "react";
+import commerce from "../../lib/commerce";
 import { Container, Grid, Typography } from "@material-ui/core";
-import landPagePic from "../../assets/landingPage.jpg";
-
-import Product from "./Product/Product";
-import Hero from "../Hero/Hero";
+import Product from "./../../components/Products/Product/Product";
+import { useParams, useRouteMatch } from "react-router-dom";
 
 import useStyles from "./styles";
 
-const Products = ({ categories, onAddToCart }) => {
+const CategoryPage = ({ categories, onAddToCart }) => {
   const classes = useStyles();
-  const mainHeader = "Welcome to my collection";
-  // console.log({ categories });
-  const homePageCats = categories.filter(
-    (cat) =>
-      cat.name == "Shoes" ||
-      cat.name == "Accessories" ||
-      cat.name == "Bottoms" ||
-      cat.name == "Tops"
-  );
-  console.log({ homePageCats });
+
+  // const catName = window.location.pathname.split("/")[2];
+  const { catName } = useParams();
+
+  const categoryType = categories.find((cat) => cat.name == catName);
+
+  // console.log(catName);
+
   return (
     <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <Hero heroPic={landPagePic} mainHeader={mainHeader} />
-      {homePageCats.map((category) => {
+      <div className={classes.toobar} />
+      {categoryType.map((category) => {
         return (
           <div>
             <Typography variant="h3" component="h2">
@@ -54,4 +50,4 @@ const Products = ({ categories, onAddToCart }) => {
   );
 };
 
-export default Products;
+export default CategoryPage;

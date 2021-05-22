@@ -1,8 +1,3 @@
-// TODO: Create product view with
-// - product image carousel
-// * add to cart button
-// * increment or decerement
-
 import React, { useState, useEffect } from "react";
 import {
   Grid,
@@ -48,10 +43,10 @@ const ProductView = ({ AddToCart }) => {
     // console.log(response);
   };
 
-  useEffect(() => {
-    const id = window.location.pathname.split("/");
-    fetchProduct(id[2]);
-  }, []);
+  // useEffect(() => {
+  //   const id = window.location.pathname.split("/");
+  //   fetchProduct(id[2]);
+  // }, []);
 
   const handleQuantity = (params) => {
     if (params === "decrease" && quantity > 1) {

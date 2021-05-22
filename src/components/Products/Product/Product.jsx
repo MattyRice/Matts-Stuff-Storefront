@@ -9,7 +9,7 @@ import {
   CardActionArea,
 } from "@material-ui/core";
 import { Add, AddShoppingCartRounded } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch, useParams } from "react-router-dom";
 
 import ProductView from "../ProductView/ProductView";
 

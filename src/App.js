@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Products, Navbar, Cart, Checkout, ProductView } from "./components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  useRouteMatch,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import { commerce } from "./lib/commerce";
+import CategoriesPage from "./pages/Categories/CategoriesPage";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
+    const { data: products } = await commerce.products.list();
+    const { data: categoriesData } = await commerce.categories.list();
 
-    setProducts(data);
+    const productsPerCategory = categoriesData.reduce((acc, category) => {
+      return [
+        ...acc,
+        {
+          ...category,
+          productsData: products.filter((product) =>
+            product.categories.find((cat) => cat.id === category.id)
+          ),
+        },
+      ];
+    }, []);
+
+    console.log({ productsPerCategory });
+
+    setCategories(productsPerCategory);
   };
 
   const fetchCart = async () => {
@@ -76,7 +97,7 @@ const App = () => {
         <Switch>
           <Route exact path="/">
             <Products
-              products={products}
+              categories={categories}
               onAddToCart={handleAddToCart}
               handleUpdateCartQty
             />
@@ -99,6 +120,13 @@ const App = () => {
           </Route>
           <Route exact path="/product-view/:id">
             <ProductView AddToCart={handleAddToCart} handleUpdateCartQty />
+          </Route>
+          <Route exact path="/category/:category">
+            <CategoriesPage
+              onAddToCart={handleAddToCart}
+              handleUpdateCartQty
+              categories={categories}
+            />
           </Route>
         </Switch>
       </div>
